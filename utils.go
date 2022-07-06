@@ -386,6 +386,7 @@ func (fs *fileSlice) Read(p []byte) (n int, err error) {
 func BuildFileNode(item Finfo, bufDs ipld.DAGService, cidBuilder cid.Builder) (node ipld.Node, err error) {
 	var r io.Reader
 	f, err := os.Open(item.Path)
+	defer f.Close()
 	if err != nil {
 		return nil, err
 	}
